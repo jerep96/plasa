@@ -1,5 +1,5 @@
 import { InflacionItem, UvaItem, Indicadores } from '@/types'
-import { SMVM, CANASTA, INFLACION_INTERANUAL } from '@/lib/config'
+import { SMVM, CANASTA } from '@/lib/config'
 
 const BASE = 'https://api.argentinadatos.com/v1'
 const REVALIDATE = 86400
