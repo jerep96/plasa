@@ -1,13 +1,13 @@
 import { formatPesos, formatPct } from '@/lib/format'
+import { CANASTA } from '@/lib/config'
 
 interface Props {
   smvm: number
-  canasta: number
 }
 
-export default function CanastaVsSalario({ smvm, canasta }: Props) {
-  const cobertura = canasta > 0 ? (smvm / canasta) * 100 : 0
-  const deficit = canasta - smvm
+export default function CanastaVsSalario({ smvm }: Props) {
+  const cobertura = (smvm / CANASTA.valor) * 100
+  const deficit = CANASTA.valor - smvm
 
   return (
     <section className="fade-up fade-up-5 border-b-[2px] border-ink">
@@ -29,7 +29,7 @@ export default function CanastaVsSalario({ smvm, canasta }: Props) {
                 className="h-full bg-ink bar-animate"
                 style={
                   {
-                    '--bar-width': canasta > 0 ? `${Math.min(cobertura, 100)}%` : '0%',
+                    '--bar-width': `${Math.min(cobertura, 100)}%`,
                   } as React.CSSProperties
                 }
               />
@@ -41,7 +41,7 @@ export default function CanastaVsSalario({ smvm, canasta }: Props) {
             <p className="font-mono text-[11px] text-ink-muted w-[180px] shrink-0 text-right sm:text-left">
               <span className="font-archivo-black text-ink text-[13px]">Canasta básica</span>
               <br />
-              {canasta > 0 ? formatPesos(canasta) : '—'}
+              {formatPesos(CANASTA.valor)}
             </p>
             <div className="flex-1 h-7 bg-ink/5 border border-ink/20">
               <div
@@ -57,11 +57,11 @@ export default function CanastaVsSalario({ smvm, canasta }: Props) {
           <p className="font-archivo text-[14px] sm:text-[15px] leading-relaxed">
             El salario mínimo cubre apenas el{' '}
             <span className="font-archivo-black text-plasa-red-light text-[18px]">
-              {cobertura > 0 ? formatPct(cobertura) : '—'}
+              {formatPct(cobertura)}
             </span>{' '}
             de la canasta básica total para una familia tipo. El déficit mensual es de{' '}
             <span className="font-archivo-black text-plasa-red-light text-[18px]">
-              {deficit > 0 ? formatPesos(Math.round(deficit)) : '—'}
+              {formatPesos(Math.round(deficit))}
             </span>
             .
           </p>

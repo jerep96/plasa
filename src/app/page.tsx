@@ -30,7 +30,7 @@ export default async function Home() {
     // fallback: todos los componentes muestran "—"
   }
 
-  const { smvm, canasta, uva, inflacion, inflacionInteranual } = indicadores
+  const { smvm, uva, inflacion } = indicadores
 
   const minutosItems: MinutosItem[] = Object.entries(PRECIOS).map(([key, p]) => ({
     key,
@@ -47,8 +47,8 @@ export default async function Home() {
       <DolarTicker />
       <HeadlineEditorial items={minutosItems} />
       <MinutosDeTrabajo items={minutosItems} />
-      <CanastaVsSalario smvm={smvm} canasta={canasta} />
-      <Inflacion inflacion={inflacion} inflacionInteranual={inflacionInteranual} />
+      <CanastaVsSalario smvm={smvm} />
+      <Inflacion inflacion={inflacion} />
       <UVA uva={uva} />
       <Footer />
     </main>

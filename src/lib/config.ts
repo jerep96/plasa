@@ -38,6 +38,16 @@ export const SMVM = {
   updatedAt: '2026-04-22',
 }
 
+export const CANASTA = {
+  valor: 1434464, // INDEC marzo 2026, familia tipo 4 integrantes
+  updatedAt: '2026-04-22',
+}
+
+export const INFLACION_INTERANUAL = {
+  valor: 32.6, // INDEC marzo 2026
+  updatedAt: '2026-04-22',
+}
+
 export const JORNADA_HORAS = 8;
 export const DIAS_LABORALES_MES = 22;
 

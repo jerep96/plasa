@@ -1,9 +1,9 @@
-import { InflacionItem, InflacionInteranualItem } from '@/types'
+import { InflacionItem } from '@/types'
 import { formatPct, mesAbreviado } from '@/lib/format'
+import { INFLACION_INTERANUAL } from '@/lib/config'
 
 interface Props {
   inflacion: InflacionItem[]
-  inflacionInteranual: InflacionInteranualItem[]
 }
 
 function barColor(valor: number): string {
@@ -12,7 +12,7 @@ function barColor(valor: number): string {
   return '#1A1410'
 }
 
-export default function Inflacion({ inflacion, inflacionInteranual }: Props) {
+export default function Inflacion({ inflacion }: Props) {
   if (!inflacion.length) {
     return (
       <section className="fade-up fade-up-6 border-b-[2px] border-ink">
@@ -34,7 +34,7 @@ export default function Inflacion({ inflacion, inflacionInteranual }: Props) {
     .filter((i) => i.fecha.startsWith(String(currentYear)))
     .reduce((acc, i) => (1 + acc) * (1 + i.valor / 100) - 1, 0) * 100
 
-  const interanualLast = inflacionInteranual[inflacionInteranual.length - 1]?.valor ?? null
+  const interanualLast = INFLACION_INTERANUAL.valor
 
   return (
     <section className="fade-up fade-up-6 border-b-[2px] border-ink">
@@ -93,7 +93,7 @@ export default function Inflacion({ inflacion, inflacionInteranual }: Props) {
             { label: `Acumulado ${currentYear}`, value: formatPct(acumulado), color: '#1A1410' },
             {
               label: 'Interanual',
-              value: interanualLast !== null ? formatPct(interanualLast) : '—',
+              value: formatPct(interanualLast),
               color: '#C0392B',
             },
           ].map(({ label, value, color }) => (
