@@ -1,21 +1,20 @@
 import { MinutosItem } from '@/types'
 import { formatPesos, formatUSD } from '@/lib/format'
-import { JORNADA_HORAS, DIAS_LABORALES_MES } from '@/lib/config'
+import { JORNADA_HORAS, DIAS_LABORALES_MES, SMVM } from '@/lib/config'
 
 interface Props {
   items: MinutosItem[]
-  smvm: number
   dolarBlue?: number
 }
 
-export default function HeadlineEditorial({ items, smvm, dolarBlue }: Props) {
-  if (!items.length || smvm === 0) return null
+export default function HeadlineEditorial({ items, dolarBlue }: Props) {
+  if (!items.length) return null
 
   const topItem = items.reduce((a, b) => (a.minutos > b.minutos ? a : b))
 
-  const valorHora = smvm / (DIAS_LABORALES_MES * JORNADA_HORAS)
+  const valorHora = SMVM.valor / (DIAS_LABORALES_MES * JORNADA_HORAS)
   const valorMinuto = valorHora / 60
-  const smvmUSD = dolarBlue && dolarBlue > 0 ? smvm / dolarBlue : null
+  const smvmUSD = dolarBlue && dolarBlue > 0 ? SMVM.valor / dolarBlue : null
 
   return (
     <section className="fade-up fade-up-3 border-b-[2px] border-ink bg-cream-dark">
@@ -38,7 +37,7 @@ export default function HeadlineEditorial({ items, smvm, dolarBlue }: Props) {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: 'Salario mínimo', value: formatPesos(smvm) },
+            { label: 'Salario mínimo', value: formatPesos(SMVM.valor) },
             { label: 'Salario en USD blue', value: smvmUSD ? formatUSD(smvmUSD) : '—' },
             { label: 'Valor por hora', value: formatPesos(Math.round(valorHora)) },
             { label: 'Valor por minuto', value: formatPesos(Math.round(valorMinuto)) },

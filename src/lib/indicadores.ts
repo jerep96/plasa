@@ -1,4 +1,5 @@
-import { InflacionItem, SmvmItem, CanastaItem, UvaItem, InflacionInteranualItem, Indicadores } from '@/types'
+import { InflacionItem, CanastaItem, UvaItem, InflacionInteranualItem, Indicadores } from '@/types'
+import { SMVM } from '@/lib/config'
 
 const BASE = 'https://api.argentinadatos.com/v1'
 const REVALIDATE = 86400
@@ -10,18 +11,14 @@ async function fetchJSON<T>(url: string): Promise<T> {
 }
 
 export async function getIndicadores(): Promise<Indicadores> {
-  const [inflacionRaw, smvmRaw, canastaRaw, uvaRaw, interanualRaw] = await Promise.allSettled([
+  const [inflacionRaw, canastaRaw, uvaRaw, interanualRaw] = await Promise.allSettled([
     fetchJSON<InflacionItem[]>(`${BASE}/finanzas/indices/inflacion`),
-    fetchJSON<SmvmItem[]>(`${BASE}/variables/smvm`),
     fetchJSON<CanastaItem[]>(`${BASE}/canasta/basica/total`),
     fetchJSON<UvaItem[]>(`${BASE}/finanzas/indices/uva`),
     fetchJSON<InflacionInteranualItem[]>(`${BASE}/finanzas/indices/inflacion-interanual`),
   ])
 
   const inflacion: InflacionItem[] = inflacionRaw.status === 'fulfilled' ? inflacionRaw.value.slice(-12) : []
-
-  const smvmArr: SmvmItem[] = smvmRaw.status === 'fulfilled' ? smvmRaw.value : []
-  const smvmLast = smvmArr[smvmArr.length - 1]
 
   const canastaArr: CanastaItem[] = canastaRaw.status === 'fulfilled' ? canastaRaw.value : []
   const canastaLast = canastaArr[canastaArr.length - 1]
@@ -32,8 +29,8 @@ export async function getIndicadores(): Promise<Indicadores> {
 
   return {
     inflacion,
-    smvm: smvmLast?.valor ?? 0,
-    smvmFecha: smvmLast?.fecha ?? '',
+    smvm: SMVM.valor,
+    smvmFecha: SMVM.updatedAt,
     canasta: canastaLast?.valor ?? 0,
     canastaFecha: canastaLast?.fecha ?? '',
     uva,

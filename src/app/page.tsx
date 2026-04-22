@@ -1,5 +1,5 @@
 import { getIndicadores } from '@/lib/indicadores'
-import { PRECIOS, calcularMinutos } from '@/lib/config'
+import { PRECIOS, calcularMinutos, SMVM } from '@/lib/config'
 import type { MinutosItem, Indicadores } from '@/types'
 
 import Header from '@/components/Header'
@@ -38,15 +38,15 @@ export default async function Home() {
     emoji: p.emoji,
     precio: p.precio,
     updatedAt: p.updatedAt,
-    minutos: smvm > 0 ? calcularMinutos(p.precio, smvm) : 0,
+    minutos: calcularMinutos(p.precio, SMVM.valor),
   }))
 
   return (
     <main>
       <Header />
       <DolarTicker />
-      <HeadlineEditorial items={minutosItems} smvm={smvm} />
-      <MinutosDeTrabajo items={minutosItems} smvm={smvm} />
+      <HeadlineEditorial items={minutosItems} />
+      <MinutosDeTrabajo items={minutosItems} />
       <CanastaVsSalario smvm={smvm} canasta={canasta} />
       <Inflacion inflacion={inflacion} inflacionInteranual={inflacionInteranual} />
       <UVA uva={uva} />

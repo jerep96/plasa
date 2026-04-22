@@ -33,6 +33,11 @@ export const PRECIOS: Record<string, Precio> = {
   },
 };
 
+export const SMVM = {
+  valor: 271571,
+  updatedAt: '2026-04-22',
+}
+
 export const JORNADA_HORAS = 8;
 export const DIAS_LABORALES_MES = 22;
 

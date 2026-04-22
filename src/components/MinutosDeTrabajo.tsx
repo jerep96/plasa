@@ -1,9 +1,9 @@
 import { MinutosItem } from '@/types'
 import { formatPesos } from '@/lib/format'
+import { SMVM } from '@/lib/config'
 
 interface Props {
   items: MinutosItem[]
-  smvm: number
 }
 
 function colorClase(min: number): string {
@@ -18,7 +18,7 @@ function barColor(min: number): string {
   return '#2A7A4B'
 }
 
-export default function MinutosDeTrabajo({ items, smvm }: Props) {
+export default function MinutosDeTrabajo({ items }: Props) {
   if (!items.length) return null
 
   const maxMin = Math.max(...items.map((i) => i.minutos))
@@ -39,7 +39,7 @@ export default function MinutosDeTrabajo({ items, smvm }: Props) {
           ¿Cuánto trabajás para pagar?
         </p>
         <p className="font-archivo italic text-[13px] text-ink-muted mb-6">
-          Basado en el salario mínimo vigente ({formatPesos(smvm)}/mes) y jornada laboral de 8 horas. Precios
+          Basado en el salario mínimo vigente ({formatPesos(SMVM.valor)}/mes) y jornada laboral de 8 horas. Precios
           relevados en AMBA · Actualización:{' '}
           {oldestUpdate ? formatUpdatedAt(oldestUpdate) : '—'}
         </p>
