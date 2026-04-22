@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description: '¿Cuánto trabajás para pagar el asado? Datos en tiempo real.',
     locale: 'es_AR',
   },
+  verification: {
+    google: 'yftv4oXKvH7_ZFJs0WFQsOSKIraHH8tABLnHhsTrXSM',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
