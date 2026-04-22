@@ -2,6 +2,17 @@ import { getIndicadores } from '@/lib/indicadores'
 import { PRECIOS, calcularMinutos, SMVM } from '@/lib/config'
 import type { MinutosItem, Indicadores } from '@/types'
 
+async function getDolarBlue(): Promise<number | null> {
+  try {
+    const res = await fetch('https://dolarapi.com/v1/dolares/blue', { next: { revalidate: 300 } })
+    if (!res.ok) return null
+    const data = await res.json()
+    return data.venta ?? null
+  } catch {
+    return null
+  }
+}
+
 import Header from '@/components/Header'
 import DolarTicker from '@/components/DolarTicker'
 import HeadlineEditorial from '@/components/HeadlineEditorial'
@@ -23,12 +34,14 @@ const EMPTY_INDICADORES: Indicadores = {
 
 export default async function Home() {
   let indicadores: Indicadores = EMPTY_INDICADORES
+  let dolarBlue: number | null = null
 
-  try {
-    indicadores = await getIndicadores()
-  } catch {
-    // fallback: todos los componentes muestran "—"
-  }
+  const [indicadoresResult, dolarBlueResult] = await Promise.allSettled([
+    getIndicadores(),
+    getDolarBlue(),
+  ])
+  if (indicadoresResult.status === 'fulfilled') indicadores = indicadoresResult.value
+  if (dolarBlueResult.status === 'fulfilled') dolarBlue = dolarBlueResult.value
 
   const { smvm, uva, inflacion } = indicadores
 
@@ -45,7 +58,7 @@ export default async function Home() {
     <main>
       <Header />
       <DolarTicker />
-      <HeadlineEditorial items={minutosItems} />
+      <HeadlineEditorial items={minutosItems} dolarBlue={dolarBlue ?? undefined} />
       <MinutosDeTrabajo items={minutosItems} />
       <CanastaVsSalario smvm={smvm} />
       <Inflacion inflacion={inflacion} />

@@ -7,10 +7,13 @@ export default function Header() {
 
   useEffect(() => {
     const update = () => {
-      const now = new Date()
-      const hh = now.getHours().toString().padStart(2, '0')
-      const mm = now.getMinutes().toString().padStart(2, '0')
-      setTime(`${hh}:${mm}`)
+      const hora = new Date().toLocaleTimeString('es-AR', {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+      setTime(hora)
     }
     update()
     const id = setInterval(update, 60000)

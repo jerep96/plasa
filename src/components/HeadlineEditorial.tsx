@@ -14,7 +14,7 @@ export default function HeadlineEditorial({ items, dolarBlue }: Props) {
 
   const valorHora = SMVM.valor / (DIAS_LABORALES_MES * JORNADA_HORAS)
   const valorMinuto = valorHora / 60
-  const smvmUSD = dolarBlue && dolarBlue > 0 ? SMVM.valor / dolarBlue : null
+  const smvmUSD = dolarBlue && dolarBlue > 0 ? Math.round(SMVM.valor / dolarBlue) : null
 
   return (
     <section className="fade-up fade-up-3 border-b-[2px] border-ink bg-cream-dark">
