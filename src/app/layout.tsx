@@ -6,9 +6,21 @@ export const metadata: Metadata = {
   title: 'PLASA — Poder Adquisitivo del Argentino',
   description: 'Dólar blue, inflación y poder adquisitivo en tiempo real. ¿Cuántos minutos de trabajo cuesta el asado, la nafta o un café?',
   openGraph: {
-    title: 'PLASA — Poder Adquisitivo del Argentino',
-    description: '¿Cuánto trabajás para pagar el asado? Datos en tiempo real.',
-    locale: 'es_AR',
+    title: "PLASA — Poder Adquisitivo del Argentino",
+    description: "¿Cuánto trabajás para pagar el asado? Datos en tiempo real.",
+    url: "https://plasa.vercel.app",
+    siteName: "PLASA",
+    locale: "es_AR",
+    type: "website",
+    images: [{
+      url: "https://plasa.vercel.app/og-image.png",
+      width: 1200,
+      height: 630,
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://plasa.vercel.app/og-image.png"],
   },
   verification: {
     google: 'yftv4oXKvH7_ZFJs0WFQsOSKIraHH8tABLnHhsTrXSM',
