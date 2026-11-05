@@ -4,26 +4,26 @@ export const PRECIOS: Record<string, Precio> = {
   asado: {
     nombre: "1 kg de asado",
     emoji: "🥩",
-    precio: 18500, // Promedio carnicerías AMBA, abril 2026
-    updatedAt: "2026-04-22",
+    precio: 16836, // Precio promedio INDEC GBA, septiembre 2026
+    updatedAt: "2026-11-05",
   },
   nafta: {
     nombre: "1L nafta premium",
     emoji: "⛽",
-    precio: 2207, // YPF Infinia, buffer desde 1/04 — congelado 45 días
-    updatedAt: "2026-04-22",
+    precio: 2300, // YPF Infinia, estimado CABA nov 2026 (interior: $2.365–$2.469)
+    updatedAt: "2026-11-05",
   },
   cafe: {
     nombre: "Café con leche en bar",
     emoji: "☕",
-    precio: 4200, // Promedio bar porteño, estimado abril 2026
-    updatedAt: "2026-04-22",
+    precio: 5400, // Promedio bar porteño, estimado octubre 2026
+    updatedAt: "2026-11-05",
   },
   mcdonalds: {
     nombre: "Combo McDonald's",
     emoji: "🍔",
-    precio: 14990, // McAllister / combo mediano estándar, 17/04
-    updatedAt: "2026-04-22",
+    precio: 17900, // Combo mediano Big Mac, agosto 2026
+    updatedAt: "2026-11-05",
   },
   netflix: {
     nombre: "Netflix (plan estándar, 1 mes)",
@@ -34,18 +34,18 @@ export const PRECIOS: Record<string, Precio> = {
 };
 
 export const SMVM = {
-  valor: 271571,
-  updatedAt: '2026-04-22',
+  valor: 398800, // Res. 4/2026, vigente desde 1/11/2026
+  updatedAt: '2026-11-01',
 }
 
 export const CANASTA = {
-  valor: 1434464, // INDEC marzo 2026, familia tipo 4 integrantes
-  updatedAt: '2026-04-22',
+  valor: 1632505, // INDEC septiembre 2026, familia tipo 4 integrantes
+  updatedAt: '2026-10-13',
 }
 
 export const INFLACION_INTERANUAL = {
-  valor: 32.6, // INDEC marzo 2026
-  updatedAt: '2026-04-22',
+  valor: 33.4, // INDEC septiembre 2026
+  updatedAt: '2026-10-13',
 }
 
 export const JORNADA_HORAS = 8;
