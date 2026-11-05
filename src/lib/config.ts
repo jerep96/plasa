@@ -28,8 +28,8 @@ export const PRECIOS: Record<string, Precio> = {
   netflix: {
     nombre: "Netflix (plan estándar, 1 mes)",
     emoji: "📺",
-    precio: 21000, // Plan Estándar sin anuncios, desde abril 2026
-    updatedAt: "2026-04-22",
+    precio: 25800, // Plan Estándar sin anuncios, precio final con impuestos, nov 2026
+    updatedAt: "2026-11-05",
   },
 };
 
