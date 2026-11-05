@@ -10,7 +10,7 @@ export const PRECIOS: Record<string, Precio> = {
   nafta: {
     nombre: "1L nafta premium",
     emoji: "⛽",
-    precio: 2300, // YPF Infinia, estimado CABA nov 2026 (interior: $2.365–$2.469)
+    precio: 2324, // YPF Infinia (premium), CABA nov 2026
     updatedAt: "2026-11-05",
   },
   cafe: {
